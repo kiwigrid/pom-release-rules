@@ -2,6 +2,10 @@
 
 This is a Maven Enforce plugin rules for validating a maven POM for required elements.
 
+## CI
+
+[![Build Status](https://travis-ci.com/kiwigrid/pom-release-rules.svg?branch=main)](https://travis-ci.com/kiwigrid/pom-release-rules)
+
 # Why?
 
 Currently (Februar 2021) there are no rules to enforce POM entries for licence, organisation and issueManagement.
