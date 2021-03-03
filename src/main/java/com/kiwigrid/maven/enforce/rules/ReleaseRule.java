@@ -4,7 +4,6 @@ import org.apache.maven.enforcer.rule.api.EnforcerRule;
 import org.apache.maven.enforcer.rule.api.EnforcerRuleException;
 import org.apache.maven.enforcer.rule.api.EnforcerRuleHelper;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluationException;
 
@@ -13,15 +12,10 @@ import org.codehaus.plexus.component.configurator.expression.ExpressionEvaluatio
  */
 public class ReleaseRule implements EnforcerRule {
 
-	@Parameter(name = "licence")
 	LicenceConfiguration licence = LicenceConfiguration.DEFAULT;
-	@Parameter(name = "organisation")
 	OrganisationConfiguration organisation = OrganisationConfiguration.DEFAULT;
-	@Parameter(name = "issueManagement")
 	IssueManagementConfiguration issueManagement = IssueManagementConfiguration.DEFAULT;
-
-	@Parameter(name = "excludes")
-	Filter filter = new Filter();
+	Filter excludes = new Filter();
 
 	public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
 
@@ -29,7 +23,7 @@ public class ReleaseRule implements EnforcerRule {
 
 		try {
 			MavenProject project = (MavenProject) helper.evaluate("${project}");
-			if (filter.test(project)) {
+			if (excludes.test(project)) {
 				log.info(String.format("ReleaseRule: excluding %s.%s-%s.%s", project.getGroupId(), project.getArtifactId(),
 						project.getVersion(), project.getPackaging()));
 			} else {

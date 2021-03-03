@@ -1,29 +1,23 @@
 package com.kiwigrid.maven.enforce.rules;
 
-import org.apache.maven.plugins.annotations.Parameter;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import org.apache.maven.project.MavenProject;
 
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.apache.maven.project.MavenProject;
-
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.*;
 
 @ToString
 @Accessors
 public class ArtifactFilter implements Predicate<MavenProject> {
 
-	@Parameter(name = "groupId")
 	String groupId;
-
-	@Parameter(name = "artifactId")
 	String artifactId;
-
-	@Parameter(name = "type")
 	String type;
-
-	@Parameter(name = "version")
 	String version;
 
 	@Override

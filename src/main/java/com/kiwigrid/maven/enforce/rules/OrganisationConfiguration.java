@@ -2,7 +2,6 @@ package com.kiwigrid.maven.enforce.rules;
 
 import org.apache.maven.model.Organization;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import lombok.ToString;
@@ -14,13 +13,8 @@ public class OrganisationConfiguration implements ConfigurationCheck {
 
 	public static final OrganisationConfiguration DEFAULT = new OrganisationConfiguration();
 
-	@Parameter(name = "skip", defaultValue = "false", property = "pom-check.organisation.skip")
 	boolean skip;
-
-	@Parameter(name = "name", property = "pom-check.organisation.name")
 	Requirement name = Requirement.required;
-
-	@Parameter(name = "url", property = "pom-check.organisation.url")
 	Requirement url = Requirement.optional;
 
 	public String title() {

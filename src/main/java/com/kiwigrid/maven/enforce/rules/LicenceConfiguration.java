@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.maven.model.License;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import lombok.ToString;
@@ -15,19 +14,11 @@ import lombok.experimental.Accessors;
 public class LicenceConfiguration implements ConfigurationCheck {
 
 	public static final LicenceConfiguration DEFAULT = new LicenceConfiguration();
-	@Parameter(name = "skip", defaultValue = "false", property = "pom-check.licence.skip")
+
 	boolean skip;
-
-	@Parameter(name = "name", property = "pom-check.licence.name")
 	Requirement name = Requirement.required;
-
-	@Parameter(name = "url", property = "pom-check.licence.url")
 	Requirement url = Requirement.optional;
-
-	@Parameter(name = "comments", property = "pom-check.licence.comments")
 	Requirement comments = Requirement.optional;
-
-	@Parameter(name = "distribution", property = "pom-check.licence.distribution")
 	Requirement distribution = Requirement.optional;
 
 	@Override

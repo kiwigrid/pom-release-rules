@@ -14,13 +14,8 @@ public class IssueManagementConfiguration implements ConfigurationCheck {
 
 	public static final IssueManagementConfiguration DEFAULT = new IssueManagementConfiguration();
 
-	@Parameter(name = "skip", defaultValue = "false", property = "pom-check.issues.skip")
 	boolean skip;
-
-	@Parameter(name = "url", property = "pom-check.issues.url")
 	Requirement url = Requirement.required;
-
-	@Parameter(name = "system", property = "pom-check.issues.system")
 	Requirement system = Requirement.optional;
 
 	public String title() {
