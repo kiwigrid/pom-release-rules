@@ -4,7 +4,7 @@
 
     <groupId>com.kiwigrid.maven.enforce</groupId>
     <artifactId>pom-release-rules</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <name>Maven Enforcer Plugin :: POM validation rules</name>
     <url>https://github.com/kiwigrid/pom-release-rules</url>
@@ -30,7 +30,7 @@
         <connection>scm:git:git://github.com/kiwigrid/pom-release-rules.git</connection>
         <developerConnection>scm:git:git@github.com:kiwigrid/pom-release-rules.git</developerConnection>
         <url>https://github.com/kiwigrid/pom-release-rules/tree/master</url>
-        <tag>pom-release-rules-1.0.2</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
