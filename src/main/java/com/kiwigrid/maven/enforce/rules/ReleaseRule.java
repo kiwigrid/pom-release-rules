@@ -20,25 +20,35 @@ public class ReleaseRule implements EnforcerRule {
 	@Parameter(name = "issueManagement")
 	IssueManagementConfiguration issueManagement = IssueManagementConfiguration.DEFAULT;
 
+	@Parameter(name = "excludes")
+	Filter filter = new Filter();
+
 	public void execute(EnforcerRuleHelper helper) throws EnforcerRuleException {
 
 		Log log = helper.getLog();
 
 		try {
 			MavenProject project = (MavenProject) helper.evaluate("${project}");
-			ConfigurationCheck[] rules = { licence, organisation, issueManagement };
+			if (filter.test(project)) {
+				log.info(String.format("ReleaseRule: excluding %s.%s-%s.%s", project.getGroupId(), project.getArtifactId(),
+						project.getVersion(), project.getPackaging()));
+			} else {
+				log.info(String.format("ReleaseRule: validating %s.%s-%s.%s", project.getGroupId(), project.getArtifactId(),
+						project.getVersion(), project.getPackaging()));
+				ConfigurationCheck[] rules = { licence, organisation, issueManagement };
 
-			for (ConfigurationCheck rule : rules) {
-				if (rule.isEnabled()) {
-					try {
-						rule.validate(project, log);
-					} catch (ConfigurationCheck.ValidationException e) {
-						log.error(String.format("FAILURE: %s (%s)", rule.title(), e.getMessage()));
-						throw new EnforcerRuleException(e.getMessage());
+				for (ConfigurationCheck rule : rules) {
+					if (rule.isEnabled()) {
+						try {
+							rule.validate(project, log);
+						} catch (ConfigurationCheck.ValidationException e) {
+							log.error(String.format("FAILURE: %s (%s)", rule.title(), e.getMessage()));
+							throw new EnforcerRuleException(e.getMessage());
+						}
+						log.info(String.format("OK: %s", rule.title()));
+					} else {
+						log.debug(String.format("disabled rule: %s", rule.title()));
 					}
-					log.info(String.format("OK: %s", rule.title()));
-				} else {
-					log.debug(String.format("disabled rule: %s", rule.title()));
 				}
 			}
 

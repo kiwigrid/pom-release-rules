@@ -15,10 +15,10 @@ import lombok.experimental.Accessors;
 public class LicenceConfiguration implements ConfigurationCheck {
 
 	public static final LicenceConfiguration DEFAULT = new LicenceConfiguration();
-	@Parameter(name = "skip", defaultValue = "false")
+	@Parameter(name = "skip", defaultValue = "false", property = "pom-check.licence.skip")
 	boolean skip;
 
-	@Parameter(name = "name", property = "pom-check.licence.skip")
+	@Parameter(name = "name", property = "pom-check.licence.name")
 	Requirement name = Requirement.required;
 
 	@Parameter(name = "url", property = "pom-check.licence.url")

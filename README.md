@@ -72,12 +72,21 @@ The rules provide the following checks:
 
 #### Configuration
 
-You may customize checks rules for dedicated entries:
+You may customize checks rules for dedicated entries.
 
 ```xml
 
 <configuration>
     <ReleaseRule implementation="com.kiwigrid.maven.enforce.rules.ReleaseRule">
+        <excludes>
+          <exclude>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <type></type>
+            <version></version>
+          </exclude>
+          ...
+        </excludes>
         <licence>
             <!-- options -->
             <skip>false</skip>
@@ -93,6 +102,26 @@ You may customize checks rules for dedicated entries:
     </ReleaseRule>
 </configuration>
 ```
+
+The customization covers filter inspected projects and rule check details.
+
+You can skip rule enforcement on maven project level to define rule settings in any parent.
+
+The filter is applied based on `excludes` entries where all `exclude` elements are `or` joined.
+
+```xml
+<excludes>
+  <exclude>
+    <type>pom</type> <!-- exclude all pom artifacts -->
+  </exclude>
+  <exclude>
+    <groupId>com.kiwigrid</groupId> 
+    <artifact>draft</artifact> <!-- exclude all types and versions of a specific artifact -->
+  </exclude>
+</excludes>
+```
+
+Use the following options define the requirements of the pom entries to inspect:
 
 | Option                   | Default    | Type        | Meaning |
 |--------------------------|------------|-------------|---------|
