@@ -4,7 +4,7 @@
 
     <groupId>com.kiwigrid.maven.enforce</groupId>
     <artifactId>pom-release-rules</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <name>Maven Enforcer Plugin :: POM validation rules</name>
     <description>Maven Enforcer rules declaring pom elements mandatory and validating on dedicated life cycle phase.</description>

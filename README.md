@@ -6,6 +6,10 @@ This is a Maven Enforce plugin rules for validating a maven POM for required ele
 
 [![Build Status](https://travis-ci.com/kiwigrid/pom-release-rules.svg?branch=main)](https://travis-ci.com/kiwigrid/pom-release-rules)
 
+## Release
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.kiwigrid.maven.enforce/pom-release-rules.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.kiwigrid.maven.enforce%22%20AND%20a:%22pom-release-rules%22)
+
 # Why?
 
 Currently (Februar 2021) there are no rules to enforce POM entries for licence, organisation and issueManagement.
@@ -140,3 +144,23 @@ Use the following options define the requirements of the pom entries to inspect:
 |`organisation.url`        | `optional` | Requirement |`<project><organisation><url>`
 
 `Requirement` ::= enum {`required`, `optional`, `forbidden`}
+
+## Contribute
+
+### Release
+
+Add your credentials of https://issues.sonatype.org/ into your `settings.xml`.
+
+```xml
+  <server>
+      <id>ossrh</id>
+      <username>...</username>
+      <password>...</password>
+  </server>
+```
+
+and publish via
+
+```
+mvn clean deploy -Dgpg.keyname=... -Dpgp.password=... -Prelease  
+```
