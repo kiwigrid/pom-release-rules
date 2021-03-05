@@ -7,6 +7,7 @@
     <version>1.0.3</version>
 
     <name>Maven Enforcer Plugin :: POM validation rules</name>
+    <description>Maven Enforcer rules declaring pom elements mandatory and validating on dedicated life cycle phase.</description>
     <url>https://github.com/kiwigrid/pom-release-rules</url>
     <organization>
         <name>Kiwigrid GmbH</name>
@@ -35,8 +36,7 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -143,7 +143,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
